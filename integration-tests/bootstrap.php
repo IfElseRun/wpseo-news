@@ -25,6 +25,11 @@ $GLOBALS['wp_tests_options'] = [
 	'active_plugins' => [ 'wordpress-seo/wp-seo.php', 'wpseo-news/wpseo-news.php' ],
 ];
 
+if ( file_exists( dirname( __DIR__ ) . '/tests/mockobject-autoload.php' ) ) {
+	// This file MUST be loaded before the Composer autoload file.
+	require_once dirname( __DIR__ ) . '/tests/mockobject-autoload.php';
+}
+
 if ( file_exists( dirname( __DIR__ ) . '/vendor/autoload.php' ) === false ) {
 	echo PHP_EOL, 'ERROR: Run `composer install` to generate the autoload files before running the unit tests.', PHP_EOL;
 	exit( 1 );

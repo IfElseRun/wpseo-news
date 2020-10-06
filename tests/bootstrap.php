@@ -2,7 +2,7 @@
 /**
  * PHPUnit bootstrap file
  *
- * @package WPSEO/WooCommerce/Tests
+ * @package WPSEO_News\Tests
  */
 
 define( 'ABSPATH', true );
@@ -22,6 +22,11 @@ define( 'DB_PASSWORD', 'nothing' );
 
 if ( function_exists( 'opcache_reset' ) ) {
 	opcache_reset();
+}
+
+if ( file_exists( __DIR__ . '/mockobject-autoload.php' ) ) {
+	// This file MUST be loaded before the Composer autoload file.
+	require_once __DIR__ . '/mockobject-autoload.php';
 }
 
 if ( file_exists( dirname( __DIR__ ) . '/vendor/autoload.php' ) === false ) {

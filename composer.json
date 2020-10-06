@@ -37,6 +37,9 @@
         "classmap": [
             "integration-tests/",
             "tests/"
+        ],
+        "files": [
+            "tests/mockobject-autoload.php"
         ]
     },
     "scripts": {
