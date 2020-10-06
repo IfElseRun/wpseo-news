@@ -62,7 +62,10 @@ if ( defined( 'YOAST_NEWS_TEST_AUTOLOADER' ) === false ) {
 			if ( file_exists( $file ) ) {
 				require_once $file;
 			}
-		}
+		},
+		true,
+		// Prepend the autoloader!
+		true
 	);
 
 	// Make sure the autoloader will only get registered once.
