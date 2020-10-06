@@ -36,7 +36,6 @@ if ( defined( 'YOAST_NEWS_TEST_AUTOLOADER' ) === false ) {
 				// Bow out, not a class this autoloader handles.
 				return;
 			}
-var_dump($class);
 
 			$file = '';
 
@@ -63,10 +62,7 @@ var_dump($class);
 			if ( file_exists( $file ) ) {
 				require_once $file;
 			}
-		},
-		true,
-		// Prepend the autoloader!
-		true
+		}
 	);
 
 	// Make sure the autoloader will only get registered once.
