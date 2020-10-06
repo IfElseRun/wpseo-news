@@ -33,10 +33,10 @@ if ( defined( 'YOAST_NEWS_TEST_AUTOLOADER' ) === false ) {
 			}
 
 			$handle = [
-				'PHPUnit\Framework\MockObject\Builder\NamespaceMatch'  => true,
+				'PHPUnit\Framework\MockObject\Builder\NamespaceMatch' => true,
 				'PHPUnit\Framework\MockObject\Builder\ParametersMatch' => true,
-				'PHPUnit\Framework\MockObject\InvocationMocker'        => true,
-				'PHPUnit\Framework\MockObject\MockMethod'              => true,
+				'PHPUnit\Framework\MockObject\InvocationMocker' => true,
+				'PHPUnit\Framework\MockObject\MockMethod' => true,
 			];
 
 			if ( isset( $handle[ $class ] ) === false ) {
@@ -44,16 +44,18 @@ if ( defined( 'YOAST_NEWS_TEST_AUTOLOADER' ) === false ) {
 				return;
 			}
 
-			$partial_filename = strtr(substr( $class, 18 ), '\\', DIRECTORY_SEPARATOR) . '.php';
+			// Try getting the overloaded file included in WP 5.6/master first.
+			$partial_filename = strtr( substr( $class, 18 ), '\\', DIRECTORY_SEPARATOR ) . '.php';
 			$file             = realpath( $wp_dir ) . 'tests/phpunit/includes/phpunit7/' . $partial_filename;
-
+var_dump($file);
 			if ( file_exists( $file ) ) {
 				require_once $file;
 				return;
 			}
 
+			// If those don't exist, just try loading them from PHPUnit itself.
 			$file = realpath( dirname( __DIR__ ) . 'vendor/phpunit/phpunit/src/Framework/' . $partial_filename );
-
+var_dump($file);
 			if ( file_exists( $file ) ) {
 				require_once $file;
 			}
