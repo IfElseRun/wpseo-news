@@ -32,32 +32,27 @@ if ( defined( 'YOAST_NEWS_TEST_AUTOLOADER' ) === false ) {
 				return;
 			}
 
-			if ( stripos( $class, 'PHPUnit\Framework\MockObject' ) !== 0 ) {
+			$handle = [
+				'PHPUnit\Framework\MockObject\Builder\NamespaceMatch'  => true,
+				'PHPUnit\Framework\MockObject\Builder\ParametersMatch' => true,
+				'PHPUnit\Framework\MockObject\InvocationMocker'        => true,
+				'PHPUnit\Framework\MockObject\MockMethod'              => true,
+			];
+
+			if ( isset( $handle[ $class ] ) === false ) {
 				// Bow out, not a class this autoloader handles.
 				return;
 			}
 
-			$file = '';
+			$partial_filename = strtr(substr( $class, 18 ), '\\', DIRECTORY_SEPARATOR) . '.php';
+			$file             = realpath( $wp_dir ) . 'tests/phpunit/includes/phpunit7/' . $partial_filename;
 
-			switch ( $class ) {
-				case 'PHPUnit\Framework\MockObject\Builder\NamespaceMatch':
-					$file = $wp_dir . 'tests/phpunit/includes/phpunit7/MockObject/Builder/NamespaceMatch.php';
-					break;
-
-				case 'PHPUnit\Framework\MockObject\Builder\ParametersMatch':
-					$file = $wp_dir . 'tests/phpunit/includes/phpunit7/MockObject/Builder/ParametersMatch.php';
-					break;
-
-				case 'PHPUnit\Framework\MockObject\InvocationMocker':
-					$file = $wp_dir . 'tests/phpunit/includes/phpunit7/MockObject/InvocationMocker.php';
-					break;
-
-				case 'PHPUnit\Framework\MockObject\MockMethod':
-					$file = $wp_dir . 'tests/phpunit/includes/phpunit7/MockObject/MockMethod.php';
-					break;
+			if ( file_exists( $file ) ) {
+				require_once $file;
+				return;
 			}
 
-			$file = realpath( $file );
+			$file = realpath( dirname( __DIR__ ) . 'vendor/phpunit/phpunit/src/Framework/' . $partial_filename );
 
 			if ( file_exists( $file ) ) {
 				require_once $file;

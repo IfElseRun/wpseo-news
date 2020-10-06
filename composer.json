@@ -40,6 +40,12 @@
         ],
         "files": [
             "tests/mockobject-autoload.php"
+        ],
+        "exclude-from-classmap": [
+            "vendor/phpunit/phpunit/src/Framework/MockObject/Builder/NamespaceMatch.php",
+            "vendor/phpunit/phpunit/src/Framework/MockObject/Builder/ParametersMatch.php",
+            "vendor/phpunit/phpunit/src/Framework/MockObject/InvocationMocker.php",
+            "vendor/phpunit/phpunit/src/Framework/MockObject/MockMethod.php"
         ]
     },
     "scripts": {
