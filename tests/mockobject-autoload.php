@@ -22,8 +22,8 @@ if ( defined( 'YOAST_NEWS_TEST_AUTOLOADER' ) === false ) {
 			}
 
 			$wp_dir = getenv( 'WP_DEVELOP_DIR' );
-			if ( file_exists( $wp_dir . 'tests/phpunit/includes/phpunit7/MockObject/LICENSE' ) === false ) {
-				// This is not WP 5.6/master.
+			if ( file_exists( $wp_dir ) === false ) {
+				// This install is not setup for running the integration tests.
 				return;
 			}
 
@@ -42,7 +42,7 @@ if ( defined( 'YOAST_NEWS_TEST_AUTOLOADER' ) === false ) {
 			// Try getting the overloaded file included in WP 5.6/master first.
 			$partial_filename = strtr( substr( $class, 18 ), '\\', DIRECTORY_SEPARATOR ) . '.php';
 			$file             = realpath( $wp_dir . '/tests/phpunit/includes/phpunit7/' . $partial_filename );
-var_dump($file);
+
 			if ( $file !== false && file_exists( $file ) ) {
 				require_once $file;
 				return;
@@ -50,7 +50,6 @@ var_dump($file);
 
 			// If those don't exist, just try loading them from PHPUnit itself.
 			$file = realpath( dirname( __DIR__ ) . 'vendor/phpunit/phpunit/src/Framework/' . $partial_filename );
-var_dump($file);
 			if ( $file !== false && file_exists( $file ) ) {
 				require_once $file;
 			}
