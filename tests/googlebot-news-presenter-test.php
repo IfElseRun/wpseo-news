@@ -11,8 +11,6 @@ use WPSEO_News_Googlebot_News_Presenter;
  * Test the WPSEO_News class.
  *
  * @coversDefaultClass WPSEO_News_Googlebot_News_Presenter
- *
- * @runTestsInSeparateProcesses
  */
 class Googlebot_News_Presenter_Test extends TestCase {
 

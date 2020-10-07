@@ -16,8 +16,6 @@ class News_Test extends TestCase {
 	 * Tests the retrieval of included post types.
 	 *
 	 * @covers WPSEO_News::get_included_post_types
-	 *
-	 * @runInSeparateProcess
 	 */
 	public function test_get_included_post_types() {
 		$options = Mockery::mock( 'overload:\WPSEO_Options' );
@@ -41,8 +39,6 @@ class News_Test extends TestCase {
 	 * Tests the retrieval of included post types with having no included post types set.
 	 *
 	 * @covers WPSEO_News::get_included_post_types
-	 *
-	 * @runInSeparateProcess
 	 */
 	public function test_get_included_post_types_with_no_set_post_types() {
 		$options = Mockery::mock( 'overload:\WPSEO_Options' );
